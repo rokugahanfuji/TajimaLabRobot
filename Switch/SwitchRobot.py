@@ -12,7 +12,7 @@ DEVICE_ID = ""
 
 if DEVICE_ID == "":
     print "DEVICE_ID is not set! Set the DEVICE_ID in SwitchRobot.py"
-    quit()
+    exit()
 
 # Initialise the pygame library
 pygame.init()
