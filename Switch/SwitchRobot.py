@@ -8,7 +8,7 @@ import subprocess
 
 GPIO.setmode(GPIO.BOARD)
 
-DEVICE_ID = "B8:78:26:5D:F0:D4"
+DEVICE_ID = ""
 
 if DEVICE_ID == "":
     print "DEVICE_ID is not set! Set the DEVICE_ID in SwitchRobot.py"
