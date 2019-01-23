@@ -103,7 +103,7 @@ try:
         events = pygame.event.get()
 
         # When the joy-con is sleeping
-        if time.time() - last_touch_time > 30:
+        if time.time() - last_touch_time > 15:
             while True:
                 pygame.joystick.quit()
                 pygame.joystick.init()
