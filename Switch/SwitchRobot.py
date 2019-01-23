@@ -95,10 +95,28 @@ try:
     GPIO.output(MotorBE, True)
     GPIO.output(MotorCE, True)
 
+    last_touch_time = time.time()
+
     # This is the main loop
     while True:
         # Check for any queued events and then process each one
         events = pygame.event.get()
+
+        # When the joy-con is sleeping
+        if time.time() - last_touch_time > 30:
+            while True:
+                pygame.joystick.quit()
+                pygame.joystick.init()
+                if pygame.joystick.get_count() > 0:
+                    j = pygame.joystick.Joystick(0)
+                    j.init()
+                    last_touch_time = time.time()
+                    break
+                time.sleep(1)
+
+        if len(events) == 0:
+            continue
+        last_touch_time = time.time()
         for event in events:
           if event.type == pygame.JOYBUTTONUP:
             # Additional Motors
