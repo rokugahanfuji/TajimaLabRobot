@@ -19,6 +19,6 @@
       - DEVICE_ID = "XX:XX:XX:XX:XX:XX:XX"`
 
 4. Add `sh /home/pi/TajimaLabRobot/robot.sh &` to `/etc/rc.local`
-   - It need to added begore `exit 0` 
+   - It need to added before `exit 0` 
 
 

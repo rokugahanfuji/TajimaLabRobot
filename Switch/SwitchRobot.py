@@ -117,7 +117,8 @@ try:
               c0 = False
               c1 = False
               setmotors()
-              if j.get_button(9) and j.get_button(12):
+              # For Joy-Con R or L
+              if (j.get_button(9) and j.get_button(12)) or :(j.get_button(8) and j.get_button(13)):
                 GPIO.cleanup()
                 subprocess.call("bluetoothctl <<< \"disconnect {0}\"".format(DEVICE_ID), shell=True, executable="/bin/bash")
 		subprocess.call("sudo shutdown now", shell=True)
