@@ -3,7 +3,7 @@ import pygame
 import time
 import RPi.GPIO as GPIO
 import os
-import commands
+import sys
 import subprocess
 
 GPIO.setmode(GPIO.BOARD)
@@ -12,7 +12,7 @@ DEVICE_ID = ""
 
 if DEVICE_ID == "":
     print "DEVICE_ID is not set! Set the DEVICE_ID in SwitchRobot.py"
-    exit()
+    sys.exit(1)
 
 # Initialise the pygame library
 pygame.init()
@@ -121,7 +121,7 @@ try:
               if (j.get_button(9) and j.get_button(12)) or (j.get_button(8) and j.get_button(13)):
                 GPIO.cleanup()
                 subprocess.call("bluetoothctl <<< \"disconnect {0}\"".format(DEVICE_ID), shell=True, executable="/bin/bash")
-		subprocess.call("sudo shutdown now", shell=True)
+		sys.exit(0)
             # Additional Mortors
             elif j.get_button(4):
               C0 = False
