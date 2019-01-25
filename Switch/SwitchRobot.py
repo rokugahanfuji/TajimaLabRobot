@@ -22,13 +22,18 @@ print "Searching {0}...".format(DEVICE_ID)
 while True:
     pygame.joystick.quit()
     pygame.joystick.init()
-    if not pygame.joystick.get_count() > 0:
+    # When connected Joy-Con using bluetoothctl, it will be appear as "Joy-Con (L/R). But, we need to recognize it by jcdriver.
+    if pygame.joystick.get_count() == 0:
         subprocess.call("bluetoothctl <<< \"connect {0}\"".format(DEVICE_ID), shell=True, executable="/bin/bash")
         time.sleep(3)
         continue
     break
-
-j = pygame.joystick.Joystick(0)
+    # After connected, jc driver recognized it.
+    if pygame.joystick.get_count() == 1:
+        time.sleep(1)
+        continue
+    break
+j = pygame.joystick.Joystick(1)
 j.init()
 print "Controller Detected. {0}".format(j.get_name())
 

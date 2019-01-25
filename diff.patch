@@ -1,0 +1,13 @@
+diff --git a/prog4/consoleiface/input.go b/prog4/consoleiface/input.go
+index 20a9875..8c8dc32 100644
+--- a/prog4/consoleiface/input.go
++++ b/prog4/consoleiface/input.go
+@@ -45,7 +45,7 @@ func (m *Manager) readStdin() {
+ 				continue
+ 			}
+ 		} else if err == io.EOF {
+-			break
++			continue
+ 		}
+ 
+ 		m.handleCommand(strings.Fields(line))
