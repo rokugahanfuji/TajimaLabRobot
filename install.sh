@@ -6,10 +6,10 @@ sudo apt-get update
 sudo apt-get install -y python-pygame
 wget https://storage.googleapis.com/golang/go1.8.linux-armv6l.tar.gz
 sudo tar -C /usr/local/ -xzf go1.8.linux-armv6l.tar.gz
-mkdir -p go/src/github.com/rinking
-mv diff.patch go/src/github.com/rinking
-cd go/src/github.com/rinking/
-git clone https://github.com/rinking/joycon.git
+mkdir -p go/src/github.com/riking
+mv diff.patch go/src/github.com/riking
+cd go/src/github.com/riking/
+git clone https://github.com/riking/joycon.git
 cd joicon/
 patch -p1 < ../diff.patch
 cd prog4
