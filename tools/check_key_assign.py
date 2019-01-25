@@ -8,6 +8,6 @@ joys.init()
 while True:
     events = pygame.event.get()
     for event in events:
-        if event.type == pygame.JOYBUTTONDOWN or event.type == pygame.JOYHATMOTION:
+        if not event == []:
              print(event)
         time.sleep(0.01)
