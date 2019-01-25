@@ -143,7 +143,7 @@ try:
               c1 = False
               setmotors()
               # For Joy-Con R or L
-              if (j.get_button(4) and j.get_button(5)):
+              if (j.get_button(8) and j.get_button(9)):
                 GPIO.cleanup()
                 subprocess.call("bluetoothctl <<< \"disconnect {0}\"".format(DEVICE_ID), shell=True, executable="/bin/bash")
 		sys.exit(0)
