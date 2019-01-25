@@ -27,7 +27,6 @@ while True:
         subprocess.call("bluetoothctl <<< \"connect {0}\"".format(DEVICE_ID), shell=True, executable="/bin/bash")
         time.sleep(3)
         continue
-    break
     # After connected, jc driver recognized it.
     if pygame.joystick.get_count() == 1:
         time.sleep(1)
@@ -102,6 +101,9 @@ try:
 
     last_touch_time = time.time()
 
+    horizon_track = 0
+    vertical_track = 0
+    threshold = 0.6
     # This is the main loop
     while True:
         # Check for any queued events and then process each one
@@ -141,7 +143,7 @@ try:
               c1 = False
               setmotors()
               # For Joy-Con R or L
-              if (j.get_button(9) and j.get_button(12)) or (j.get_button(8) and j.get_button(13)):
+              if (j.get_button(4) and j.get_button(5)):
                 GPIO.cleanup()
                 subprocess.call("bluetoothctl <<< \"disconnect {0}\"".format(DEVICE_ID), shell=True, executable="/bin/bash")
 		sys.exit(0)
@@ -155,10 +157,29 @@ try:
               C1 = False
               setmotors()
 
-	  # HAT BUTTON
-          if event.type == pygame.JOYHATMOTION:
-              x, y = j.get_hat(0)
+	  # Joy Axis Motion
+          if event.type == pygame.JOYAXISMOTION:
+              if event.axis == 2:
+                  horizon_track = event.value
+              elif event.axis == 3:
+                  vertical_track = event.value
+
+              if horizon_track > threshold:
+                  x = 1
+              elif horizon_track < -threshold:
+                  x = -1
+              else:
+                  x = 0
+
+              if vertical_track > threshold:
+                  y = 1
+              elif vertical_track < -threshold:
+                  y = -1
+              else:
+                  y = 0
+
               input_hat = (x, y)
+
               # Default
               if input_hat == (0, 0):
                   A0 = False
