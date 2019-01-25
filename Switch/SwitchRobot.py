@@ -152,9 +152,9 @@ try:
                   vertical_track = event.value
 
               if horizon_track > threshold:
-                  x = 1
-              elif horizon_track < -threshold:
                   x = -1
+              elif horizon_track < -threshold:
+                  x = 1
               else:
                   x = 0
 
