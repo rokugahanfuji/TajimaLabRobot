@@ -10,7 +10,7 @@ mkdir -p go/src/github.com/riking
 mv diff.patch go/src/github.com/riking
 cd go/src/github.com/riking/
 git clone https://github.com/riking/joycon.git
-cd joicon/
+cd joycon/
 patch -p1 < ../diff.patch
 cd prog4
 /usr/local/go/bin/go get ./...
